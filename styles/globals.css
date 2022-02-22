@@ -73,16 +73,9 @@
 body {
   background-color: white;
   /* font-family: "VT323", monospace; */
-  height: 100%;
-  width: 100%;
-  background-image: url('../public/sangimgg.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
 }
 
-.variant {
+/* .variant {
   cursor: pointer;
   height: 100%;
   display: flex;
@@ -90,7 +83,37 @@ body {
   align-items: center;
 }
 
+.correctAnswer {
+  color: #14a71c;
+  background: #8bd3dd;
+  padding: 1rem;
+}
 
+.correctAnswer:after {
+  background: #0aa116;
+  color: #001858;
+  visibility: visible;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  content: "correct!";
+}
+
+.incorrectAnswer {
+  background: #b10707;
+  color: #fef6e4;
+  padding: 1rem;
+}
+
+.incorrectAnswer:after {
+  background: #b31010;
+  color: #001858;
+  visibility: visible;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  content: "incorrect!";
+} */
 /* Scroll bar CSS */
 body::-webkit-scrollbar
 {
