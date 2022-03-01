@@ -2,6 +2,7 @@ import { MongoClient, ObjectId } from "mongodb";
 import { Markup } from 'interweave';
 import { useState } from "react";
 import moment from "moment";
+import Head from "next/head";
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('myTotalySecretKey');
 
@@ -17,8 +18,11 @@ export default function Example(props){
         console.log(arr);
     }
     return (
+     
         <div>
-      
+       <Head>
+        <script type="text/javascript" src="//unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+      </Head>
       
 <body className="bg-gray-800 text-gray-100 px-2 py-6">
       
@@ -39,15 +43,15 @@ export default function Example(props){
      
     </button>
       <div
-        className="max-w-screen-2xl mt-24 px-2 grid gap-8 grid-cols-1 md:grid-cols-1 md:px-4 lg:px-16 xl:px-16 py-16 mx-auto bg-gray-100 text-gray-900 rounded-lg shadow-lg">
+        className=" mt-24 px-2 grid gap-8 grid-cols-1 md:grid-cols-1 m bg-gray-100 text-gray-900 rounded-lg shadow-lg">
         
         <div className="flex flex-col justify-between">
           
          
-        <div className="flex flex-col">
-      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-          <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <div >
+      <div >
+        <div >
+          <div >
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
@@ -160,7 +164,7 @@ export default function Example(props){
                     </td>
                     {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{person.role}</td> */}
                     <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
-                      <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                      <a href={"mailto:"+person.email} className="text-indigo-600 hover:text-indigo-900" target={"_blank"}>
                         Send Mail
                       </a>
                       <br/>
@@ -198,16 +202,16 @@ export default function Example(props){
   }
   
 export async function getServerSideProps(context){
-    const idd=String(context.params.id);
-    const decryptedString = cryptr.decrypt(idd);
-    if(decryptedString!="valid"){
-        return {
-            props:{
-              posts:null,
-              valid:false
-            }
-        }
-    }
+    // const idd=String(context.params.id);
+    // const decryptedString = cryptr.decrypt(idd);
+    // if(decryptedString!="valid"){
+    //     return {
+    //         props:{
+    //           posts:null,
+    //           valid:false
+    //         }
+    //     }
+    // }
     const client=await MongoClient.connect('mongodb+srv://Vivek:TeNzP6QPWszrWcKX@cluster0.hmbhl.mongodb.net/Sangmitra?retryWrites=true&w=majority');
 const db=client.db();
 const collection=db.collection('feedback');

@@ -5,13 +5,13 @@ const cryptr = new Cryptr('myTotalySecretKey');
 
 
 
-function getdetails(){
-  const name=prompt('Enter your id');
-  if(name=="vijay"){
-    const encryptedString = cryptr.encrypt('valid');
-    window.location.href = `/admin/${encryptedString}`
-  }
-}
+// function getdetails(){
+//   const name=prompt('Enter your id');
+//   if(name=="vijay"){
+//     const encryptedString = cryptr.encrypt('valid');
+//     window.location.href = `/admin/${encryptedString}`
+//   }
+// }
 
 export default function App() {
   const [added, setadded] = useState(false);
@@ -28,13 +28,13 @@ headers:{
   })
   
   setadded(true);
-  
+  window.location.assign('https://sanghamitra-resort.com/');
 
 }
 if(added){
   return(
     <div>
-      <div className="float-right" onClick={getdetails}>login</div>
+      {/* <div className="float-right" onClick={getdetails}>login</div> */}
       
 <body className="bg-gray-800 text-gray-100 px-8 py-6">
       
@@ -55,7 +55,7 @@ if(added){
 else{
   return (
      <div>
-      <div className="float-right" onClick={getdetails}>login</div>
+      {/* <div className="float-right" onClick={getdetails}>login</div> */}
       
 <body className="bg-gray-800 text-gray-100 px-8 py-6">
       
