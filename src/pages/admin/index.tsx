@@ -1,47 +1,66 @@
 import { MongoClient, ObjectId } from "mongodb";
 import { Markup } from 'interweave';
-import { useState } from "react";
+
 import moment from "moment";
 import Head from "next/head";
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('myTotalySecretKey');
 
-export default function Example(props){
-    const [details, setDetails] = useState(props.postt);
-    
-        // details_set();
-    function toggledrop(){
-        let arr=details.sort(function (a,b){
-            return a.ser>b.ser?1:-1;
-        })
-        setDetails(arr);
-        console.log(arr);
-    }
-    return (
-     
-        <div>
-       <Head>
-        <script type="text/javascript" src="//unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
-      </Head>
+import React, { useState, useEffect } from 'react';
+// import './App.css';
+
+
+
+function App(props) {
+  const bands=props.postt;
+  const [data, setData] = useState(bands);
+  const [sortType, setSortType] = useState('fq');
+  const [order,setOrder]=useState(false);
+  useEffect(() => {
+    const sortArray = type => {
+      const types = {
+        fq: 'fq',
+        eod: 'eod',
+        overall: 'overall',
+        ser:"ser",
+        clean:"clean",
+        date:"date"
+      };
+      const sortProperty = types[type];
+      const sorted = [...bands].sort((a, b) => b[sortProperty] - a[sortProperty]);
+      setData(sorted);
+    };
+
+    sortArray(sortType);
+  }, [sortType]); 
+  function sorting(e){
+    setSortType(e);
+    const types = {
+      fq: 'fq',
+      eod: 'eod',
+      overall: 'overall',
+      ser:"ser",
+      clean:"clean",
+      date:"date"
+    };
+    // const sortProperty = types[type];
+    const sorted = [...bands].sort((a, b) => b[sortType] - a[sortType]);
+      setData(sorted);
+  }
+  return (
+    <div >
+      <body className="bg-gray-800 text-gray-100 px-2 py-6">
+      <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">View Coustumer Review</h2>
+      <select onChange={(e) => sorting(e.target.value)} className="text-white bg-gray-800"> 
+        <option value="fq">Food Quality</option>
+        <option value="eod">Ease of order</option>
+        <option value="ser">Service</option>
+        <option value="clean">Cleanliness</option>
+        <option value="overall">Overall</option>
+        <option value="date">Date</option>
+      </select>
       
-<body className="bg-gray-800 text-gray-100 px-2 py-6">
-      
-      <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">Lets talk about everything!</h2>
-      <button type="button" className=" border-transparent  inline-block bg-white p-2 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
-            id="menu-button" aria-expanded="true" aria-haspopup="true"
-            onClick={()=>toggledrop()}
-            >
-      {/* {Lang} */}
-      Filters
-      <div className='inline-block'>
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-6" fill="none" viewBox="0 0 17 17" stroke="currentColor">
-  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-</svg>
-      </div>
-      
-    
-     
-    </button>
+
       <div
         className=" mt-24 px-2 grid gap-8 grid-cols-1 md:grid-cols-1 m bg-gray-100 text-gray-900 rounded-lg shadow-lg">
         
@@ -121,7 +140,7 @@ export default function Example(props){
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {details.map((person) => (
+                {data.map((person) => (
                   <tr key={person.email}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
@@ -184,9 +203,203 @@ export default function Example(props){
         
         
       </div>
+      </body>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+// export default function Example(props){
+//     const [details, setDetails] = useState(props.postt);
+    
+//         // details_set();
+//     function toggledrop(){
+//         let arr=details.sort(function (a,b){
+//             return a.ser>b.ser?1:-1;
+//         })
+//         setDetails(arr);
+//         console.log(arr);
+//     }
+//     return (
+     
+//         <div>
+       
       
-    </body>
-     </div>
+// <body className="bg-gray-800 text-gray-100 px-2 py-6">
+      
+//       <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">Lets talk about everything!</h2>
+//       <button type="button" className=" border-transparent  inline-block bg-white p-2 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
+//             id="menu-button" aria-expanded="true" aria-haspopup="true"
+//             onClick={()=>toggledrop()}
+//             >
+//       {/* {Lang} */}
+//       Filters
+//       <div className='inline-block'>
+//       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-6" fill="none" viewBox="0 0 17 17" stroke="currentColor">
+//   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+// </svg>
+//       </div>
+      
+    
+     
+//     </button>
+    //   <div
+    //     className=" mt-24 px-2 grid gap-8 grid-cols-1 md:grid-cols-1 m bg-gray-100 text-gray-900 rounded-lg shadow-lg">
+        
+    //     <div className="flex flex-col justify-between">
+          
+         
+    //     <div >
+    //   <div >
+    //     <div >
+    //       <div >
+    //         <table className="min-w-full divide-y divide-gray-200">
+    //           <thead className="bg-gray-50">
+    //             <tr>
+    //               <th
+    //                 scope="col"
+    //                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+    //               >
+    //                 Name
+    //               </th>
+    //               {/* <th
+    //                 scope="col"
+    //                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+    //               >
+    //                 Email
+    //               </th> */}
+    //               <th
+    //                 scope="col"
+    //                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+    //               >
+    //                 Food Quality
+    //               </th>
+    //               <th
+    //                 scope="col"
+    //                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+    //               >
+    //                 Service
+    //               </th>
+    //               <th
+    //                 scope="col"
+    //                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+    //               >
+    //                 Ease of Odering
+    //               </th>
+    //               <th
+    //                 scope="col"
+    //                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+    //               >
+    //                 Cleanliness
+    //               </th>
+    //               <th
+    //                 scope="col"
+    //                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+    //               >
+    //                 Overall
+    //               </th>
+    //               <th
+    //                 scope="col"
+    //                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+    //               >
+    //                 Message
+    //               </th>
+    //               <th
+    //                 scope="col"
+    //                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+    //               >
+    //                 Date
+    //               </th>
+    //               <th
+    //                 scope="col"
+    //                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+    //               >
+    //                 Action
+    //               </th>
+    //               {/* <th scope="col" className="relative px-6 py-3">
+    //                 <span className="sr-only">Edit</span>
+    //               </th> */}
+    //             </tr>
+    //           </thead>
+    //           <tbody className="bg-white divide-y divide-gray-200">
+    //             {details.map((person) => (
+    //               <tr key={person.email}>
+    //                 <td className="px-6 py-4 whitespace-nowrap">
+    //                   <div className="flex items-center">
+                       
+    //                     <div className="ml-4">
+    //                       <div className="text-sm font-medium text-gray-900">{person.name}</div>
+    //                       <div className="text-sm text-gray-500">{person.email}</div>
+    //                     </div>
+    //                   </div>
+    //                 </td>
+    //                 <td className="px-6 py-4 whitespace-nowrap">
+    //                   <div className="text-sm text-gray-900">{person.fq}</div>
+    //                   <div className="text-sm text-gray-500">out of 5</div>
+    //                 </td>
+    //                 {/* <td className="px-6 py-4 whitespace-nowrap">
+    //                   <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+    //                     Active
+    //                   </span>
+    //                 </td> */}
+    //                 <td className="px-6 py-4 whitespace-nowrap">
+    //                   <div className="text-sm text-gray-900">{person.ser}</div>
+    //                   <div className="text-sm text-gray-500">out of 5</div>
+    //                 </td><td className="px-6 py-4 whitespace-nowrap">
+    //                   <div className="text-sm text-gray-900">{person.eod}</div>
+    //                   <div className="text-sm text-gray-500">out of 5</div>
+    //                 </td><td className="px-6 py-4 whitespace-nowrap">
+    //                   <div className="text-sm text-gray-900">{person.clean}</div>
+    //                   <div className="text-sm text-gray-500">out of 5</div>
+    //                 </td><td className="px-6 py-4 whitespace-nowrap">
+    //                   <div className="text-sm text-gray-900">{person.overall}</div>
+    //                   <div className="text-sm text-gray-500">out of 5</div>
+    //                 </td>
+    //                 <td className="px-6 py-4 whitespace-nowrap">
+    //                   <div className="text-sm text-gray-900">{person.message.length>7?person.message.substring(0, 6)+"...":person.message}</div>
+    //                   {/* <div className="text-sm text-gray-500">out of 5</div> */}
+    //                 </td>
+    //                 <td className="px-6 py-4 whitespace-nowrap">
+    //                   <div className="text-sm text-gray-900">{moment(person.date).format("MMMM Do YYYY")}</div>
+    //                   {/* <div className="text-sm text-gray-500">out of 5</div> */}
+    //                 </td>
+    //                 {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{person.role}</td> */}
+    //                 <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
+    //                   <a href={"mailto:"+person.email} className="text-indigo-600 hover:text-indigo-900" target={"_blank"}>
+    //                     Send Mail
+    //                   </a>
+    //                   <br/>
+    //                   <a href="#" className="text-indigo-600 hover:text-indigo-900">
+    //                     View
+    //                   </a>
+    //                 </td>
+    //               </tr>
+    //             ))}
+    //           </tbody>
+    //         </table>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
+    // </div>
+        
+        
+    //   </div>
+      
+//     </body>
+//      </div>
 
 
 
@@ -198,8 +411,8 @@ export default function Example(props){
 
        
       
-    )
-  }
+//     )
+//   }
   
 export async function getServerSideProps(context){
     // const idd=String(context.params.id);
