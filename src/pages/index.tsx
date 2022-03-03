@@ -12,18 +12,18 @@ export default function App() {
   const [wait, setWait] = useState(false);
   const [user, setUser] = useState({name:"",phone:"",email:"",fq:4,eod:4,clean:4,ser:4,overall:4,date:new Date(),message:""});
 async function addingpost(){
- console.log(user);
-// setWait(true);
-//   const response=await fetch('/api/addpost',{
-//     method:'POST',
-// body:(JSON.stringify(user)),
-// headers:{
-//     'content-type':'application/json'
-// }
-//   })
-  // setWait(false);
-//   setadded(true);
-//   window.location.assign('https://sanghamitra-resort.com/');
+//  console.log(user);
+setWait(true);
+  const response=await fetch('/api/addpost',{
+    method:'POST',
+body:(JSON.stringify(user)),
+headers:{
+    'content-type':'application/json'
+}
+  })
+  setWait(false);
+  setadded(true);
+  window.location.assign('https://sanghamitra-resort.com/');
 
 }
 if(wait){
@@ -42,12 +42,7 @@ if(wait){
         <div className="flex flex-col justify-between">
           Thank you for your valuable time 
           <br/>
-          <button type="button" className="bg-indigo-500" disabled>
-  <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
-    
-  </svg>
-  Processing...
-</button>
+          Please wait a moment ....
           </div>
           </div>
           </body>
