@@ -55,6 +55,7 @@ function App(props) {
         columns: [
           { label: 'Name', value: 'name' }, // Top level data
           { label: 'Email', value: row => (row.email) }, // Run functions
+          { label: 'Number', value: row => (row.phone ) },
           { label: 'Food quality', value: row => (row.fq ) },
           { label: 'Service', value: row => (row.ser ) },
           { label: 'Ease of odering', value: row => (row.eod ) },
@@ -77,13 +78,12 @@ function App(props) {
   }
   return (
     <div >
-      {/* <Head>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.1/xlsx.full.min.js"></script> 
-      </Head> */}
+      <title>Sangmitra Feedback Admin</title>
 
       <body className="bg-gray-800 text-gray-100 px-2 py-6">
       <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">View Coustumer Review</h2>
-      <select onChange={(e) => sorting(e.target.value)} className="text-white bg-gray-800"> 
+      <select onChange={(e) => sorting(e.target.value)} className=" border-transparent float-left inline-block bg-white p-2 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"> 
+        
         <option value="fq">Food Quality</option>
         <option value="eod">Ease of order</option>
         <option value="ser">Service</option>
@@ -91,7 +91,7 @@ function App(props) {
         <option value="overall">Overall</option>
         <option value="date">Date</option>
       </select>
-            <button type="button" className=" border-transparent  inline-block bg-white p-2 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
+            <button type="button" className=" border-transparent float-right inline-block bg-white p-2 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
             id="menu-button" aria-expanded="true" aria-haspopup="true"
             onClick={()=>downloadexcel()}
             >
@@ -277,6 +277,7 @@ const collection=db.collection('feedback');
             postt:All_feed.map(post=>({
                 name:post.name,
                 email:post.email,
+                phone:post.phone||"",
                 message:post.message,
                 fq:post.fq,
                 eod:post.eod,

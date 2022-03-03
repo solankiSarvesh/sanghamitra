@@ -5,36 +5,61 @@ const cryptr = new Cryptr('myTotalySecretKey');
 
 
 
-// function getdetails(){
-//   const name=prompt('Enter your id');
-//   if(name=="vijay"){
-//     const encryptedString = cryptr.encrypt('valid');
-//     window.location.href = `/admin/${encryptedString}`
-//   }
-// }
+
 
 export default function App() {
   const [added, setadded] = useState(false);
-  const [user, setUser] = useState({name:"",email:"",fq:4,eod:4,clean:4,ser:4,overall:4,date:new Date(),message:""});
+  const [wait, setWait] = useState(false);
+  const [user, setUser] = useState({name:"",phone:"",email:"",fq:4,eod:4,clean:4,ser:4,overall:4,date:new Date(),message:""});
 async function addingpost(){
-//  console.log(user);
+ console.log(user);
+// setWait(true);
+//   const response=await fetch('/api/addpost',{
+//     method:'POST',
+// body:(JSON.stringify(user)),
+// headers:{
+//     'content-type':'application/json'
+// }
+//   })
+  // setWait(false);
+//   setadded(true);
+//   window.location.assign('https://sanghamitra-resort.com/');
 
-  const response=await fetch('/api/addpost',{
-    method:'POST',
-body:(JSON.stringify(user)),
-headers:{
-    'content-type':'application/json'
 }
-  })
-  
-  setadded(true);
-  window.location.assign('https://sanghamitra-resort.com/');
-
-}
-if(added){
+if(wait){
   return(
     <div>
       {/* <div className="float-right" onClick={getdetails}>login</div> */}
+      <title>
+        Sangmitra Feedback
+      </title>
+<body className="bg-gray-800 text-gray-100 px-8 py-6">
+      
+      <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">Lets talk about everything!</h2>
+      <div
+        className="max-w-screen-xl mt-24 px-8 grid gap-8 grid-cols-1 md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 py-16 mx-auto bg-gray-100 text-gray-900 rounded-lg shadow-lg">
+       
+        <div className="flex flex-col justify-between">
+          Thank you for your valuable time 
+          <br/>
+          <button type="button" className="bg-indigo-500" disabled>
+  <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
+    
+  </svg>
+  Processing...
+</button>
+          </div>
+          </div>
+          </body>
+          </div>
+  )
+}
+else if(added){
+  return(
+    <div>
+     <title>
+        Sangmitra Feedback
+      </title>
       
 <body className="bg-gray-800 text-gray-100 px-8 py-6">
       
@@ -55,7 +80,9 @@ if(added){
 else{
   return (
      <div>
-      {/* <div className="float-right" onClick={getdetails}>login</div> */}
+     <title>
+        Sangmitra Feedback
+      </title>
       
 <body className="bg-gray-800 text-gray-100 px-8 py-6">
       
@@ -88,12 +115,21 @@ else{
         onChange={e => setUser({ ...user, email: e.target.value })}
               />
           </div>
+          <div className="mt-8">
+            <span className="uppercase text-sm text-gray-600 font-bold">Phone</span>
+            <input className="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+              type='text'
+              name="user[phone]"
+        value={user.phone}
+        onChange={e => setUser({ ...user, phone: (e.target.value) })}
+              />
+          </div>
           
           <div className="mt-8">
             <span className="uppercase text-sm text-gray-600 font-bold">Message</span>
             <textarea
             
-              className="w-full h-64 bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+              className="w-full h-32 bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
               name="user[message]"
         value={user.message}
         onChange={e => setUser({ ...user, message: e.target.value })}
@@ -112,32 +148,23 @@ else{
             <br/>
             <div className="flex justify-center space-x-8">
               
-  <div className="form-check form-check-inline ">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[fq]"  value="1"
-    onClick={e => setUser({ ...user, fq: 1 })}
+            <div className="form-check form-check-inline ">
     
-    />
-    <label className="form-check-label inline-block text-gray-800" >1</label>
+    <label onClick={e => setUser({ ...user, fq: 1 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.fq==1? 'text-3xl':''}`} >🤬</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[fq]"value="2"
-    onClick={e => setUser({ ...user, fq: 2 })} />
-    <label className="form-check-label inline-block text-gray-800" >2</label>
+   
+    <label onClick={e => setUser({ ...user, fq: 2 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.fq==2? 'text-3xl':''}`} >🙁</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[fq]"value="3"
-    onClick={e => setUser({ ...user, fq: 3 })} />
-    <label className="form-check-label inline-block text-gray-800" >3</label>
+    
+    <label onClick={e => setUser({ ...user, fq: 3 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.fq==3? 'text-3xl':''}`} >😶</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[fq]"value="4"
-    onClick={e => setUser({ ...user, fq: 4 })} />
-    <label className="form-check-label inline-block text-gray-800" >4</label>
+    <label onClick={e => setUser({ ...user, fq: 4 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.fq==4? 'text-3xl':''}`} >😁</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[fq]"value="5"
-    onClick={e => setUser({ ...user, fq: 5 })} />
-    <label className="form-check-label inline-block text-gray-800" >5</label>
+    <label onClick={e => setUser({ ...user, fq: 5 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.fq==5? 'text-3xl':''}`} >😍</label>
   </div>
 </div>
 
@@ -148,32 +175,23 @@ else{
             <br/>
             <div className="flex justify-center space-x-8">
               
-  <div className="form-check form-check-inline ">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[eod]"  value="1"
-    onClick={e => setUser({ ...user, eod: 1 })}
+            <div className="form-check form-check-inline ">
     
-    />
-    <label className="form-check-label inline-block text-gray-800" >1</label>
+    <label onClick={e => setUser({ ...user, eod: 1 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.eod==1? 'text-3xl':''}`} >🤬</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[eod]"value="2"
-    onClick={e => setUser({ ...user, eod: 2 })} />
-    <label className="form-check-label inline-block text-gray-800" >2</label>
+   
+    <label onClick={e => setUser({ ...user, eod: 2 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.eod==2? 'text-3xl':''}`} >🙁</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[eod]"value="3"
-    onClick={e => setUser({ ...user, eod: 3 })} />
-    <label className="form-check-label inline-block text-gray-800" >3</label>
+    
+    <label onClick={e => setUser({ ...user, eod: 3 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.eod==3? 'text-3xl':''}`} >😶</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[eod]"value="4"
-    onClick={e => setUser({ ...user, eod: 4 })} />
-    <label className="form-check-label inline-block text-gray-800" >4</label>
+    <label onClick={e => setUser({ ...user, eod: 4 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.eod==4? 'text-3xl':''}`} >😁</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[eod]"value="5"
-    onClick={e => setUser({ ...user, eod: 5 })} />
-    <label className="form-check-label inline-block text-gray-800" >5</label>
+    <label onClick={e => setUser({ ...user, eod: 5 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.eod==5? 'text-3xl':''}`} >😍</label>
   </div>
 </div>
           </div>
@@ -182,32 +200,23 @@ else{
             <br/>
             <div className="flex justify-center space-x-8">
               
-  <div className="form-check form-check-inline ">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[ser]"  value="1"
-    onClick={e => setUser({ ...user, ser: 1 })}
+            <div className="form-check form-check-inline ">
     
-    />
-    <label className="form-check-label inline-block text-gray-800" >1</label>
+    <label onClick={e => setUser({ ...user, ser: 1 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.ser==1? 'text-3xl':''}`} >🤬</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[ser]"value="2"
-    onClick={e => setUser({ ...user, ser: 2 })} />
-    <label className="form-check-label inline-block text-gray-800" >2</label>
+   
+    <label onClick={e => setUser({ ...user, ser: 2 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.ser==2? 'text-3xl':''}`} >🙁</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[ser]"value="3"
-    onClick={e => setUser({ ...user, ser: 3 })} />
-    <label className="form-check-label inline-block text-gray-800" >3</label>
+    
+    <label onClick={e => setUser({ ...user, ser: 3 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.ser==3? 'text-3xl':''}`} >😶</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[ser]"value="4"
-    onClick={e => setUser({ ...user, ser: 4 })} />
-    <label className="form-check-label inline-block text-gray-800" >4</label>
+    <label onClick={e => setUser({ ...user, ser: 4 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.ser==4? 'text-3xl':''}`} >😁</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[ser]"value="5"
-    onClick={e => setUser({ ...user, ser: 5 })} />
-    <label className="form-check-label inline-block text-gray-800" >5</label>
+    <label onClick={e => setUser({ ...user, ser: 5 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.ser==5? 'text-3xl':''}`} >😍</label>
   </div>
 </div>
           </div>
@@ -216,32 +225,23 @@ else{
             <br/>
             <div className="flex justify-center space-x-8">
               
-  <div className="form-check form-check-inline ">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[clean]"  value="1"
-    onClick={e => setUser({ ...user, clean: 1 })}
+            <div className="form-check form-check-inline ">
     
-    />
-    <label className="form-check-label inline-block text-gray-800" >1</label>
+    <label onClick={e => setUser({ ...user, clean: 1 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.clean==1? 'text-3xl':''}`} >🤬</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[clean]"value="2"
-    onClick={e => setUser({ ...user, clean: 2 })} />
-    <label className="form-check-label inline-block text-gray-800" >2</label>
+   
+    <label onClick={e => setUser({ ...user, clean: 2 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.clean==2? 'text-3xl':''}`} >🙁</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[clean]"value="3"
-    onClick={e => setUser({ ...user, clean: 3 })} />
-    <label className="form-check-label inline-block text-gray-800" >3</label>
+    
+    <label onClick={e => setUser({ ...user, clean: 3 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.clean==3? 'text-3xl':''}`} >😶</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[clean]"value="4"
-    onClick={e => setUser({ ...user, clean: 4 })} />
-    <label className="form-check-label inline-block text-gray-800" >4</label>
+    <label onClick={e => setUser({ ...user, clean: 4 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.clean==4? 'text-3xl':''}`} >😁</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[clean]"value="5"
-    onClick={e => setUser({ ...user, clean: 5 })} />
-    <label className="form-check-label inline-block text-gray-800" >5</label>
+    <label onClick={e => setUser({ ...user, clean: 5 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.clean==5? 'text-3xl':''}`} >😍</label>
   </div>
 </div>
           </div>
@@ -250,32 +250,23 @@ else{
             <br/>
             <div className="flex justify-center space-x-8">
               
-  <div className="form-check form-check-inline ">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[overall]"  value="1"
-    onClick={e => setUser({ ...user, overall: 1 })}
+            <div className="form-check form-check-inline ">
     
-    />
-    <label className="form-check-label inline-block text-gray-800" >1</label>
+    <label onClick={e => setUser({ ...user, overall: 1 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.overall==1? 'text-3xl':''}`} >🤬</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[overall]"value="2"
-    onClick={e => setUser({ ...user, overall: 2 })} />
-    <label className="form-check-label inline-block text-gray-800" >2</label>
+   
+    <label onClick={e => setUser({ ...user, overall: 2 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.overall==2? 'text-3xl':''}`} >🙁</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[overall]"value="3"
-    onClick={e => setUser({ ...user, overall: 3 })} />
-    <label className="form-check-label inline-block text-gray-800" >3</label>
+    
+    <label onClick={e => setUser({ ...user, overall: 3 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.overall==3? 'text-3xl':''}`} >😶</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[overall]"value="4"
-    onClick={e => setUser({ ...user, overall: 4 })} />
-    <label className="form-check-label inline-block text-gray-800" >4</label>
+    <label onClick={e => setUser({ ...user, overall: 4 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.overall==4? 'text-3xl':''}`} >😁</label>
   </div>
   <div className="form-check form-check-inline">
-    <input className="form-check-input form-check-input  rounded-full h-5 w-5 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="user[overall]"value="5"
-    onClick={e => setUser({ ...user, overall: 5 })} />
-    <label className="form-check-label inline-block text-gray-800" >5</label>
+    <label onClick={e => setUser({ ...user, overall: 5 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.overall==5? 'text-3xl':''}`} >😍</label>
   </div>
 </div>
           </div>
