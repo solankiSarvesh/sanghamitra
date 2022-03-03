@@ -61,7 +61,7 @@ function App(props) {
           { label: 'Cleanliness', value: row => (row.clean ) },
           { label: 'Overall', value: row => (row.overall ) },
           { label: 'Message', value: row => (row.message ) },
-          { label: 'Date', value: row => (row.date ) },
+          { label: 'Date', value: row => (moment(row.date).format("MMMM Do YYYY") ) },
         ],
         content: data
       }
