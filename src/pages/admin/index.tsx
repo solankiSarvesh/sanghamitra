@@ -16,7 +16,8 @@ function App(props) {
   const bands=props.postt;
   const [data, setData] = useState(bands);
   const [sortType, setSortType] = useState('fq');
-  const [order,setOrder]=useState(false);
+  
+  const [openid,setOpenid]=useState(null);
   useEffect(() => {
     const sortArray = type => {
       const types = {
@@ -76,12 +77,94 @@ function App(props) {
     
     xlsx(dataa, settings) // Will download the excel file
   }
+  if(openid!=null){
+    console.log(openid);
+    return(
+    <div >
+    <title>Sangmitra Feedback Admin</title>
+
+    <body className="bg-gray-800 text-gray-100 px-2 py-6">
+    <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">{openid.name}'s Review</h2>
+    <button type="button" className=" border-transparent float-left inline-block bg-white p-2 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
+            id="menu-button" aria-expanded="true" aria-haspopup="true"
+            onClick={()=>setOpenid(null)}
+            >
+      {/* {Lang} */}
+      Back
+      
+      
+    
+     
+    </button>
+
+    <div
+        className=" w-4/5 m-auto mt-24  grid gap-5 grid-cols-1 md:grid-cols-2 text-xl bg-gray-100 text-gray-900 rounded-lg shadow-lg">
+        
+        <div className="flex flex-col justify-between text-center">
+          Name
+          </div>
+          <div className="flex flex-col  justify-between text-left text-black-700 bold">
+          {openid.name}
+          </div>
+          <div className="flex flex-col justify-between text-center">
+          Email
+          </div>
+          <div className="flex flex-col  justify-between text-left text-black-700 bold">
+          {openid.email}
+          </div>
+          <div className="flex flex-col justify-between text-center">
+          Phone
+          </div>
+          <div className="flex flex-col  justify-between text-left text-black-700 bold">
+          {openid.phone}
+          </div>
+          <div className="flex flex-col justify-between text-center">
+          Food Quality
+          </div>
+          <div className="flex flex-col  justify-between text-left text-black-700 bold">
+          {openid.fq} / 5
+          </div>
+          <div className="flex flex-col justify-between text-center">
+          Service
+          </div>
+          <div className="flex flex-col  justify-between text-left text-black-700 bold">
+          {openid.ser} /5 
+          </div>
+          <div className="flex flex-col justify-between text-center">
+          Ease of Odering
+          </div>
+          <div className="flex flex-col  justify-between text-left text-black-700 bold">
+          {openid.eod} /5 
+          </div>
+          <div className="flex flex-col justify-between text-center">
+          Cleanliness
+          </div>
+          <div className="flex flex-col  justify-between text-left text-black-700 bold">
+          {openid.clean} /5 
+          </div>
+          <div className="flex flex-col justify-between text-center">
+          Overall
+          </div>
+          <div className="flex flex-col  justify-between text-left text-black-700 bold">
+          {openid.overall} /5 
+          </div>
+          <div className="flex flex-col justify-between text-center">
+          Message
+          </div>
+          <div className="flex flex-col  justify-between text-left text-black-700 bold">
+          {openid.message}
+          </div>
+          </div>
+    </body>
+    </div>
+    )
+  }else{
   return (
     <div >
       <title>Sangmitra Feedback Admin</title>
 
       <body className="bg-gray-800 text-gray-100 px-2 py-6">
-      <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">View Coustumer Review</h2>
+      <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">Coustumer Review</h2>
       <select onChange={(e) => sorting(e.target.value)} className=" border-transparent float-left inline-block bg-white p-2 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"> 
         
         <option value="fq">Food Quality</option>
@@ -229,7 +312,7 @@ function App(props) {
                         Send Mail
                       </a>
                       <br/>
-                      <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                      <a onClick={()=>{setOpenid(person)}} className="text-indigo-600 hover:text-indigo-900">
                         View
                       </a>
                     </td>
@@ -248,6 +331,7 @@ function App(props) {
       </body>
     </div>
   );
+}
 }
 
 export default App;

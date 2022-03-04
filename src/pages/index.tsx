@@ -145,21 +145,21 @@ else{
               
             <div className="form-check form-check-inline ">
     
-    <label onClick={e => setUser({ ...user, fq: 1 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.fq==1? 'text-3xl':''}`} >🤬</label>
+    <label onClick={e => setUser({ ...user, fq: 1 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.fq==1? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🤬</label>
   </div>
   <div className="form-check form-check-inline">
    
-    <label onClick={e => setUser({ ...user, fq: 2 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.fq==2? 'text-3xl':''}`} >🙁</label>
+    <label onClick={e => setUser({ ...user, fq: 2 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.fq==2? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🙁</label>
   </div>
   <div className="form-check form-check-inline">
     
-    <label onClick={e => setUser({ ...user, fq: 3 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.fq==3? 'text-3xl':''}`} >😶</label>
+    <label onClick={e => setUser({ ...user, fq: 3 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.fq==3? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😶</label>
   </div>
   <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, fq: 4 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.fq==4? 'text-3xl':''}`} >😁</label>
+    <label onClick={e => setUser({ ...user, fq: 4 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.fq==4? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😁</label>
   </div>
   <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, fq: 5 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.fq==5? 'text-3xl':''}`} >😍</label>
+    <label onClick={e => setUser({ ...user, fq: 5 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.fq==5? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😍</label>
   </div>
 </div>
 
@@ -172,21 +172,21 @@ else{
               
             <div className="form-check form-check-inline ">
     
-    <label onClick={e => setUser({ ...user, eod: 1 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.eod==1? 'text-3xl':''}`} >🤬</label>
+    <label onClick={e => setUser({ ...user, eod: 1 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.eod==1? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🤬</label>
   </div>
   <div className="form-check form-check-inline">
    
-    <label onClick={e => setUser({ ...user, eod: 2 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.eod==2? 'text-3xl':''}`} >🙁</label>
+    <label onClick={e => setUser({ ...user, eod: 2 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.eod==2? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🙁</label>
   </div>
   <div className="form-check form-check-inline">
     
-    <label onClick={e => setUser({ ...user, eod: 3 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.eod==3? 'text-3xl':''}`} >😶</label>
+    <label onClick={e => setUser({ ...user, eod: 3 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.eod==3? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😶</label>
   </div>
   <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, eod: 4 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.eod==4? 'text-3xl':''}`} >😁</label>
+    <label onClick={e => setUser({ ...user, eod: 4 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.eod==4? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😁</label>
   </div>
   <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, eod: 5 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.eod==5? 'text-3xl':''}`} >😍</label>
+    <label onClick={e => setUser({ ...user, eod: 5 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.eod==5? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😍</label>
   </div>
 </div>
           </div>
@@ -197,21 +197,21 @@ else{
               
             <div className="form-check form-check-inline ">
     
-    <label onClick={e => setUser({ ...user, ser: 1 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.ser==1? 'text-3xl':''}`} >🤬</label>
+    <label onClick={e => setUser({ ...user, ser: 1 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.ser==1? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🤬</label>
   </div>
   <div className="form-check form-check-inline">
    
-    <label onClick={e => setUser({ ...user, ser: 2 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.ser==2? 'text-3xl':''}`} >🙁</label>
+    <label onClick={e => setUser({ ...user, ser: 2 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.ser==2? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🙁</label>
   </div>
   <div className="form-check form-check-inline">
     
-    <label onClick={e => setUser({ ...user, ser: 3 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.ser==3? 'text-3xl':''}`} >😶</label>
+    <label onClick={e => setUser({ ...user, ser: 3 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.ser==3? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😶</label>
   </div>
   <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, ser: 4 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.ser==4? 'text-3xl':''}`} >😁</label>
+    <label onClick={e => setUser({ ...user, ser: 4 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.ser==4? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😁</label>
   </div>
   <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, ser: 5 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.ser==5? 'text-3xl':''}`} >😍</label>
+    <label onClick={e => setUser({ ...user, ser: 5 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.ser==5? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😍</label>
   </div>
 </div>
           </div>
@@ -222,21 +222,21 @@ else{
               
             <div className="form-check form-check-inline ">
     
-    <label onClick={e => setUser({ ...user, clean: 1 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.clean==1? 'text-3xl':''}`} >🤬</label>
+    <label onClick={e => setUser({ ...user, clean: 1 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.clean==1? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🤬</label>
   </div>
   <div className="form-check form-check-inline">
    
-    <label onClick={e => setUser({ ...user, clean: 2 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.clean==2? 'text-3xl':''}`} >🙁</label>
+    <label onClick={e => setUser({ ...user, clean: 2 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.clean==2? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🙁</label>
   </div>
   <div className="form-check form-check-inline">
     
-    <label onClick={e => setUser({ ...user, clean: 3 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.clean==3? 'text-3xl':''}`} >😶</label>
+    <label onClick={e => setUser({ ...user, clean: 3 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.clean==3? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😶</label>
   </div>
   <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, clean: 4 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.clean==4? 'text-3xl':''}`} >😁</label>
+    <label onClick={e => setUser({ ...user, clean: 4 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.clean==4? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😁</label>
   </div>
   <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, clean: 5 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.clean==5? 'text-3xl':''}`} >😍</label>
+    <label onClick={e => setUser({ ...user, clean: 5 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.clean==5? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😍</label>
   </div>
 </div>
           </div>
@@ -247,21 +247,21 @@ else{
               
             <div className="form-check form-check-inline ">
     
-    <label onClick={e => setUser({ ...user, overall: 1 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.overall==1? 'text-3xl':''}`} >🤬</label>
+    <label onClick={e => setUser({ ...user, overall: 1 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.overall==1? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🤬</label>
   </div>
   <div className="form-check form-check-inline">
    
-    <label onClick={e => setUser({ ...user, overall: 2 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.overall==2? 'text-3xl':''}`} >🙁</label>
+    <label onClick={e => setUser({ ...user, overall: 2 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.overall==2? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🙁</label>
   </div>
   <div className="form-check form-check-inline">
     
-    <label onClick={e => setUser({ ...user, overall: 3 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.overall==3? 'text-3xl':''}`} >😶</label>
+    <label onClick={e => setUser({ ...user, overall: 3 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.overall==3? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😶</label>
   </div>
   <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, overall: 4 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.overall==4? 'text-3xl':''}`} >😁</label>
+    <label onClick={e => setUser({ ...user, overall: 4 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.overall==4? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😁</label>
   </div>
   <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, overall: 5 })} className={`form-check-label ease-in text-2xl  duration-100 inline-block text-gray-800 ${user.overall==5? 'text-3xl':''}`} >😍</label>
+    <label onClick={e => setUser({ ...user, overall: 5 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.overall==5? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😍</label>
   </div>
 </div>
           </div>
