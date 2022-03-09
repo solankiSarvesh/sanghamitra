@@ -148,7 +148,7 @@ else{
             
             <br/>
             <div>
-            <p className={`uppercase text-m text-center w-full text-gray-600 ${text_color[user.fq]} font-bold ml-6`}>{showdata[(user.fq)]}</p>
+            <p className={`uppercase text-m text-center w-full text-gray-600 ${text_color[user.fq]} font-bold `}>{showdata[(user.fq)]}</p>
             </div>
             <div className="flex justify-center ">
               
@@ -203,7 +203,7 @@ else{
             <br/>
             
             <div className="mt-4">
-            <p className={`uppercase text-xl text-center w-full text-gray-600 ${text_color[user.eod]} font-bold ml-6`}>{showemoji[(user.eod)]+" "+showdata[(user.eod)]}</p>
+            <p className={`uppercase text-xl text-center w-full text-gray-600 ${text_color[user.eod]} font-bold `}>{showemoji[(user.eod)]+" "+showdata[(user.eod)]}</p>
             </div>
             <div className="flex justify-center ">
               
