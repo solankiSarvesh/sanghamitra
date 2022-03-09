@@ -51,7 +51,23 @@ function App() {
         <option value="members">Members</option>
         <option value="formed">Formed in</option>
       </select>
-
+      <input
+    type="range"
+    className="
+      form-range
+      appearance-none
+      w-full
+      h-1
+      p-0
+      bg-gray-400
+      focus:outline-none focus:ring-0 focus:shadow-none
+    "
+    min="0"
+    max="5"
+    step="0.5"
+    id="customRange3"
+   onChange={(e)=>console.log(e.target.value)}
+  />
       {data.map(band => (
         <div key={band.id} style={{ margin: '30px' }}>
           <div>{`Band: ${band.name}`}</div>

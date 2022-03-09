@@ -11,9 +11,14 @@ export default function App() {
   const [added, setadded] = useState(false);
   const [wait, setWait] = useState(false);
   const [user, setUser] = useState({name:"",phone:"",email:"",fq:4,eod:4,clean:4,ser:4,overall:4,date:new Date(),message:""});
+  let showdata={1:"Poor",2:"Need to Improve",3:"Average",4:"Can Do Better",5:"Excellent"};
+  let showemoji={1:"🤬",2:"🙁",3:"😶",4:"😁",5:"😍"};
+  let text_color={1:"text-red-600",2:"text-purple-400",3:"text-yellow-700",4:"text-green-500",5:"text-green-700"};
+  
 async function addingpost(){
 //  console.log(user);
 setWait(true);
+
   const response=await fetch('/api/addpost',{
     method:'POST',
 body:(JSON.stringify(user)),
@@ -79,7 +84,7 @@ else{
         Sangmitra Feedback
       </title>
       
-<body className="bg-gray-800 text-gray-100 px-8 py-6">
+<body className="bg-gray-800 text-gray-100 px-4 py-6">
       
       <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">Lets talk about everything!</h2>
       <div
@@ -140,10 +145,14 @@ else{
         <div className="">
           <div>
             <span className="uppercase text-sm text-gray-600 font-bold">Food Quality</span>
+            
             <br/>
-            <div className="flex justify-center space-x-8">
+            <div>
+            <p className={`uppercase text-m text-center w-full text-gray-600 ${text_color[user.fq]} font-bold ml-6`}>{showdata[(user.fq)]}</p>
+            </div>
+            <div className="flex justify-center ">
               
-            <div className="form-check form-check-inline ">
+            {/* <div className="form-check form-check-inline ">
     
     <label onClick={e => setUser({ ...user, fq: 1 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.fq==1? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🤬</label>
   </div>
@@ -160,7 +169,31 @@ else{
   </div>
   <div className="form-check form-check-inline">
     <label onClick={e => setUser({ ...user, fq: 5 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.fq==5? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😍</label>
-  </div>
+  </div> */}
+  <br></br>
+   <input
+    type="range"
+    className="
+      form-range
+      block 
+      appearance-none
+      w-full
+      h-1
+      p-0
+      mt-6
+      bg-gray-400
+      focus:outline-none focus:ring-0 focus:shadow-none
+    "
+    step={0.01}
+    min={1}
+    max={5}
+    
+    id="customRange3"
+   onChange={(e)=>setUser({ ...user, fq: parseInt(e.target.value) })}
+  />
+  <br></br>
+  
+  
 </div>
 
             
@@ -168,9 +201,13 @@ else{
           <div className="mt-8">
             <span className="uppercase text-sm text-gray-600 font-bold">Ease of Odering</span>
             <br/>
-            <div className="flex justify-center space-x-8">
+            
+            <div className="mt-4">
+            <p className={`uppercase text-xl text-center w-full text-gray-600 ${text_color[user.eod]} font-bold ml-6`}>{showemoji[(user.eod)]+" "+showdata[(user.eod)]}</p>
+            </div>
+            <div className="flex justify-center ">
               
-            <div className="form-check form-check-inline ">
+            {/* <div className="form-check form-check-inline ">
     
     <label onClick={e => setUser({ ...user, eod: 1 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.eod==1? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🤬</label>
   </div>
@@ -187,13 +224,35 @@ else{
   </div>
   <div className="form-check form-check-inline">
     <label onClick={e => setUser({ ...user, eod: 5 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.eod==5? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😍</label>
-  </div>
+  </div> */}
+  <br></br>
+   <input
+    type="range"
+    className="
+      form-range
+      
+      appearance-none
+      w-full
+      h-1
+      p-0
+      mt-6
+      bg-gray-400
+      focus:outline-none focus:ring-0 focus:shadow-none
+    "
+    step={0.01}
+    min={1}
+    max={5}
+    
+    id="customRange3"
+   onChange={(e)=>setUser({ ...user, eod: parseInt(e.target.value) })}
+  />
+  <br></br>
 </div>
           </div>
           <div className="mt-8">
             <span className="uppercase text-sm text-gray-600 font-bold">Service</span>
             <br/>
-            <div className="flex justify-center space-x-8">
+            <div className="flex justify-center space-x-4">
               
             <div className="form-check form-check-inline ">
     
@@ -218,7 +277,7 @@ else{
           <div className="mt-8">
             <span className="uppercase text-sm text-gray-600 font-bold">Cleanliness</span>
             <br/>
-            <div className="flex justify-center space-x-8">
+            <div className="flex justify-center space-x-4">
               
             <div className="form-check form-check-inline ">
     
@@ -243,7 +302,7 @@ else{
           <div className="mt-8">
             <span className="uppercase text-sm text-gray-600 font-bold">Overall Experience</span>
             <br/>
-            <div className="flex justify-center space-x-8">
+            <div className="flex justify-center space-x-4">
               
             <div className="form-check form-check-inline ">
     
