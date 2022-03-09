@@ -182,9 +182,9 @@ else{
       p-0
       mt-6
       bg-gray-400
-      focus:outline-none focus:ring-0 focus:shadow-none
+      
     "
-    step={0.01}
+    step={0.0001}
     min={1}
     max={5}
     
@@ -239,7 +239,7 @@ else{
       bg-gray-400
       focus:outline-none focus:ring-0 focus:shadow-none
     "
-    step={0.01}
+    step={0.0001}
     min={1}
     max={5}
     
