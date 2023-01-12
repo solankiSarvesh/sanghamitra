@@ -135,13 +135,7 @@ else{
               ></textarea>
           </div>
           
-          <div className="mt-2">
-            <button
-            onClick={addingpost}
-              className="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
-              Submit Message
-            </button>
-          </div>
+         
           
         </div>
           </div>
@@ -385,7 +379,13 @@ else{
 
           </div>
           <br/>
-          
+          <div className="mt-2">
+            <button
+            onClick={addingpost}
+              className="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
+              Submit Message
+            </button>
+          </div>
         </div>
         
       </div>
