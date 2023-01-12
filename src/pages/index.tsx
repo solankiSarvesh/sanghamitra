@@ -2,15 +2,14 @@
 import React, { useState } from "react";
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('myTotalySecretKey');
-
-
+import StarRatings from 'react-star-ratings';
 
 
 
 export default function App() {
   const [added, setadded] = useState(false);
   const [wait, setWait] = useState(false);
-  const [user, setUser] = useState({name:"",phone:"",email:"",fq:4,eod:4,clean:4,ser:4,overall:4,date:new Date(),message:""});
+  const [user, setUser] = useState({name:"",phone:"",email:"",fq:4,eod:4,clean:4,ser:4,overall:4,date:new Date(),message:"",image:""});
   let showdata={1:"Poor",2:"Need to Improve",3:"Average",4:"Can Do Better",5:"Excellent"};
   let showemoji={1:"🤬",2:"🙁",3:"😶",4:"😁",5:"😍"};
   let text_color={1:"text-red-600",2:"text-purple-400",3:"text-yellow-700",4:"text-green-500",5:"text-green-700"};
@@ -129,14 +128,20 @@ else{
             <span className="uppercase text-sm text-gray-600 font-bold">Message</span>
             <textarea
             
-              className="w-full h-32 bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+              className="w-full h-64 bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
               name="user[message]"
         value={user.message}
         onChange={e => setUser({ ...user, message: e.target.value })}
               ></textarea>
           </div>
           
-          
+          <div className="mt-2">
+            <button
+            onClick={addingpost}
+              className="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
+              Submit Message
+            </button>
+          </div>
           
         </div>
           </div>
@@ -147,8 +152,8 @@ else{
             <span className="uppercase text-sm text-gray-600 font-bold">Food Quality</span>
             
             <br/>
-            <div>
-            <p className={`uppercase text-m text-center w-full text-gray-600 ${text_color[user.fq]} font-bold `}>{showdata[(user.fq)]}</p>
+            <div className="mt-4">
+            <p className={`uppercase text-xl text-center w-full text-gray-600 ${text_color[user.fq]} font-bold `}>{showemoji[(user.fq)]+" "+showdata[(user.fq)]}</p>
             </div>
             <div className="flex justify-center ">
               
@@ -171,7 +176,7 @@ else{
     <label onClick={e => setUser({ ...user, fq: 5 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.fq==5? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😍</label>
   </div> */}
   <br></br>
-   <input
+   {/* <input
     type="range"
     className="
       form-range
@@ -190,11 +195,18 @@ else{
     
     id="customRange3"
    onChange={(e)=>setUser({ ...user, fq: parseInt(e.target.value) })}
-  />
+  /> */}
+  <StarRatings
+          rating={user.fq}
+          starRatedColor="gold"
+          changeRating={(e)=>{setUser({ ...user, fq: parseInt(e) })}}
+          numberOfStars={5}
+            starDimension={35}
+          name='rating'
+        />
   <br></br>
   
   
-</div>
 
             
           </div>
@@ -226,7 +238,7 @@ else{
     <label onClick={e => setUser({ ...user, eod: 5 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.eod==5? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😍</label>
   </div> */}
   <br></br>
-   <input
+   {/* <input
     type="range"
     className="
       form-range
@@ -245,16 +257,28 @@ else{
     
     id="customRange3"
    onChange={(e)=>setUser({ ...user, eod: parseInt(e.target.value) })}
-  />
+  /> */}
+  <StarRatings
+          rating={user.eod}
+          starRatedColor="gold"
+          changeRating={(e)=>{setUser({ ...user, eod: parseInt(e) })}}
+          numberOfStars={5}
+            starDimension={35}
+          name='rating'
+        />
+</div>
   <br></br>
 </div>
           </div>
           <div className="mt-8">
             <span className="uppercase text-sm text-gray-600 font-bold">Service</span>
             <br/>
+            <div className="mt-4">
+            <p className={`uppercase text-xl text-center w-full text-gray-600 ${text_color[user.ser]} font-bold `}>{showemoji[(user.ser)]+" "+showdata[(user.ser)]}</p>
+            </div>
             <div className="flex justify-center space-x-4">
               
-            <div className="form-check form-check-inline ">
+            {/* <div className="form-check form-check-inline ">
     
     <label onClick={e => setUser({ ...user, ser: 1 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.ser==1? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🤬</label>
   </div>
@@ -271,15 +295,26 @@ else{
   </div>
   <div className="form-check form-check-inline">
     <label onClick={e => setUser({ ...user, ser: 5 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.ser==5? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😍</label>
-  </div>
+  </div> */}
+  <StarRatings
+          rating={user.ser}
+          starRatedColor="gold"
+          changeRating={(e)=>{setUser({ ...user, ser: parseInt(e) })}}
+             starDimension={35}
+          numberOfStars={5}
+          name='rating'
+        />
 </div>
           </div>
           <div className="mt-8">
             <span className="uppercase text-sm text-gray-600 font-bold">Cleanliness</span>
             <br/>
+            <div className="mt-4">
+            <p className={`uppercase text-xl text-center w-full text-gray-600 ${text_color[user.clean]} font-bold `}>{showemoji[(user.clean)]+" "+showdata[(user.clean)]}</p>
+            </div>
             <div className="flex justify-center space-x-4">
               
-            <div className="form-check form-check-inline ">
+            {/* <div className="form-check form-check-inline ">
     
     <label onClick={e => setUser({ ...user, clean: 1 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.clean==1? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🤬</label>
   </div>
@@ -296,15 +331,27 @@ else{
   </div>
   <div className="form-check form-check-inline">
     <label onClick={e => setUser({ ...user, clean: 5 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.clean==5? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😍</label>
-  </div>
+  </div> */}
+  <StarRatings
+          rating={user.clean}
+          starRatedColor="gold"
+          changeRating={(e)=>{setUser({ ...user, clean: parseInt(e) })}}
+            starDimension={35}
+          numberOfStars={5}
+          name='rating'
+        />
+
 </div>
           </div>
           <div className="mt-8">
             <span className="uppercase text-sm text-gray-600 font-bold">Overall Experience</span>
             <br/>
+            <div className="mt-4">
+            <p className={`uppercase text-xl text-center w-full text-gray-600 ${text_color[user.overall]} font-bold `}>{showemoji[(user.overall)]+" "+showdata[(user.overall)]}</p>
+            </div>
             <div className="flex justify-center space-x-4">
               
-            <div className="form-check form-check-inline ">
+            {/* <div className="form-check form-check-inline ">
     
     <label onClick={e => setUser({ ...user, overall: 1 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.overall==1? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🤬</label>
   </div>
@@ -321,16 +368,24 @@ else{
   </div>
   <div className="form-check form-check-inline">
     <label onClick={e => setUser({ ...user, overall: 5 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.overall==5? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😍</label>
-  </div>
+  </div> */}
+  <StarRatings
+          rating={user.overall}
+          starRatedColor="gold"
+          changeRating={(e)=>{setUser({ ...user, overall: parseInt(e) })}}
+             starDimension={35}
+          numberOfStars={5}
+          name='rating'
+        />
+
+  
 </div>
+
+
+
           </div>
-          <div className="mt-2">
-            <button
-            onClick={addingpost}
-              className="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
-              Submit Message
-            </button>
-          </div>
+          <br/>
+          
         </div>
         
       </div>

@@ -16,7 +16,7 @@ function App(props) {
   const bands=props.postt;
   const [data, setData] = useState(bands);
   const [sortType, setSortType] = useState('fq');
-  
+  const [Order,setOrder]=useState(1);
   const [openid,setOpenid]=useState(null);
   useEffect(() => {
     const sortArray = type => {
@@ -46,8 +46,15 @@ function App(props) {
       date:"date"
     };
     // const sortProperty = types[type];
-    const sorted = [...bands].sort((a, b) => b[sortType] - a[sortType]);
+    let sorted = [...bands].sort((a, b) => b[sortType] - a[sortType]);
+    console.log(Order);
+    if(Order==0)sorted.reverse();
       setData(sorted);
+  }
+  function changeOrder(){
+    setOrder((Order^1));
+    const stored=data.reverse();
+    setData(stored);
   }
   function downloadexcel(){
     let dataa = [
@@ -174,6 +181,13 @@ function App(props) {
         <option value="overall">Overall</option>
         <option value="date">Date</option>
       </select>
+      <button type="button" className=" border-transparent ml-6 inline-block bg-white p-2 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
+            id="menu-button" aria-expanded="true" aria-haspopup="true"
+            onClick={()=>changeOrder()}
+            >
+      {/* {Lang} */}
+      {Order?"Increasing":"Decreasing"}
+      </button>
             <button type="button" className=" border-transparent float-right inline-block bg-white p-2 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
             id="menu-button" aria-expanded="true" aria-haspopup="true"
             onClick={()=>downloadexcel()}
@@ -185,6 +199,7 @@ function App(props) {
     
      
     </button>
+    
 
       <div
         className=" mt-24 px-2 grid gap-8 grid-cols-1 md:grid-cols-1 m bg-gray-100 text-gray-900 rounded-lg shadow-lg">
