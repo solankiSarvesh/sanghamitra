@@ -3,19 +3,42 @@ import React, { useState } from "react";
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('myTotalySecretKey');
 import StarRatings from 'react-star-ratings';
-
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function App() {
+  const notify = () => toast("Wow so easy!");
   const [added, setadded] = useState(false);
   const [wait, setWait] = useState(false);
   const [user, setUser] = useState({name:"",phone:"",email:"",fq:4,eod:4,clean:4,ser:4,overall:4,date:new Date(),message:"",image:""});
   let showdata={1:"Poor",2:"Need to Improve",3:"Average",4:"Can Do Better",5:"Excellent"};
   let showemoji={1:"🤬",2:"🙁",3:"😶",4:"😁",5:"😍"};
   let text_color={1:"text-red-600",2:"text-purple-400",3:"text-yellow-700",4:"text-green-500",5:"text-green-700"};
-  
+  function ValidateEmail(inputText)
+{
+var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+if(inputText.match(mailformat))
+{
+
+return true;
+}
+else
+{
+alert("Invalid Email");
+
+return false;
+}
+}
 async function addingpost(){
 //  console.log(user);
+if(ValidateEmail(user.email)==false){
+  return;
+}else if(user.phone.length!=10){
+  alert("Invalid Phone number");
+  return;
+}
+
 setWait(true);
 
   const response=await fetch('/api/addpost',{
@@ -117,7 +140,7 @@ else{
           <div className="mt-8">
             <span className="uppercase text-sm text-gray-600 font-bold">Phone</span>
             <input className="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-              type='text'
+              type='number'
               name="user[phone]"
         value={user.phone}
         onChange={e => setUser({ ...user, phone: (e.target.value) })}
