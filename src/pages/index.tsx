@@ -198,7 +198,7 @@ else{
             starDimension={35}
           name='rating'
         />
-  <br></br>
+  {/* <br></br> */}
   
   
 
@@ -261,7 +261,7 @@ else{
           name='rating'
         />
 </div>
-  <br></br>
+  {/* <br></br> */}
 </div>
           </div>
           <div className="mt-8">
