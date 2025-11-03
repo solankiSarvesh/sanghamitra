@@ -364,7 +364,7 @@ export async function getServerSideProps(context){
     //         }
     //     }
     // }
-    const client=await MongoClient.connect('mongodb+srv://Vivek:TeNzP6QPWszrWcKX@cluster0.hmbhl.mongodb.net/Sangmitra?retryWrites=true&w=majority');
+    const client=await MongoClient.connect('mongodb+srv://viveksolanki:vivek123@cluster0.wjlbtgs.mongodb.net/sangmitra?retryWrites=true&w=majority');
 const db=client.db();
 const collection=db.collection('feedback');
     const All_feed=await collection.find().toArray();
