@@ -16,13 +16,28 @@
 import {MongoClient} from 'mongodb'
 async function handler(req,res){
     // const {title ,email ,category ,description,date,datetime,imageUrl,readingTime,author}=req.data;
+    res.setHeader('Access-Control-Allow-Origin', '*'); // or specific origin
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Content-Type, Authorization, X-Requested-With'
+  );
+
+  if (req.method === 'OPTIONS') {
+    // preflight request
+    return res.status(200).end();
+  }
+
+  if (req.method !== 'POST') {
+    return res.setHeader('Allow', 'POST, OPTIONS').status(405).json({ error: 'Method Not Allowed' });
+  }
     console.log(req.body);   
 
     const data=req.body;
 //     const obj = JSON.parse(sendData);
 
 //     const {title ,email ,category ,description,date,datetime,imageUrl,readingTime,author}=data;
-const client=await MongoClient.connect('mongodb+srv://Vivek:TeNzP6QPWszrWcKX@cluster0.hmbhl.mongodb.net/Sangmitra?retryWrites=true&w=majority');
+const client=await MongoClient.connect('mongodb+srv://viveksolanki:vivek123@cluster0.wjlbtgs.mongodb.net/sangmitra?retryWrites=true&w=majority');
 const db=client.db();
 
 
