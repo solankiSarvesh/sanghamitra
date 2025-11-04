@@ -70,7 +70,7 @@ function App(props) {
           { label: 'Cleanliness', value: row => (row.clean ) },
           { label: 'Overall', value: row => (row.overall ) },
           { label: 'Message', value: row => (row.message ) },
-          { label: 'Date', value: row => (moment(row.date).format("MMMM Do YYYY") ) },
+          { label: 'Date', value: row => (moment(row.date).format("MMMM Do YYYY,h:mm A") ) },
         ],
         content: data
       }
@@ -318,7 +318,7 @@ function App(props) {
                       {/* <div className="text-sm text-gray-500">out of 5</div> */}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">{moment(person.date).format("MMMM Do YYYY")}</div>
+                      <div className="text-sm text-gray-900">{moment(person.date).format("MMMM Do YYYY,h:mm A")}</div>
                       {/* <div className="text-sm text-gray-500">out of 5</div> */}
                     </td>
                     {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{person.role}</td> */}
