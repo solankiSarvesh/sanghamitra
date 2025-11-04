@@ -293,7 +293,7 @@ function App(props) {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">{person.fq}</div>
-                      <div className="text-sm text-gray-500">out of 5</div>
+                      {/* <div className="text-sm text-gray-500">out of 5</div> */}
                     </td>
                     {/* <td className="px-6 py-4 whitespace-nowrap">
                       <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -302,16 +302,16 @@ function App(props) {
                     </td> */}
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">{person.ser}</div>
-                      <div className="text-sm text-gray-500">out of 5</div>
+                      {/* <div className="text-sm text-gray-500">out of 5</div> */}
                     </td><td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">{person.eod}</div>
-                      <div className="text-sm text-gray-500">out of 5</div>
+                      {/* <div className="text-sm text-gray-500">out of 5</div> */}
                     </td><td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">{person.clean}</div>
-                      <div className="text-sm text-gray-500">out of 5</div>
+                      {/* <div className="text-sm text-gray-500">out of 5</div> */}
                     </td><td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">{person.overall}</div>
-                      <div className="text-sm text-gray-500">out of 5</div>
+                      {/* <div className="text-sm text-gray-500">out of 5</div> */}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">{person.message.length>7?person.message.substring(0, 6)+"...":person.message}</div>
