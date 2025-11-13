@@ -175,7 +175,7 @@ export default function App() {
                         onChange={(e) =>
                           setUser({ ...user, message: e.target.value })
                         }
-                        rows="4"
+                        rows={4}
                         placeholder="Share your thoughts with us..."
                       ></textarea>
                     </div>
@@ -353,7 +353,7 @@ export default function App() {
                           onChange={(e) =>
                             setUser({ ...user, message: e.target.value })
                           }
-                          rows="4"
+                          rows={4}
                           placeholder="Share your thoughts with us..."
                         ></textarea>
                       </div>
