@@ -1,421 +1,377 @@
-// import "./styles.css";
 import React, { useState } from "react";
-const Cryptr = require('cryptr');
-const cryptr = new Cryptr('myTotalySecretKey');
-import StarRatings from 'react-star-ratings';
-import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
-
 
 export default function App() {
-  const notify = () => toast("Wow so easy!");
-  const [added, setadded] = useState(false);
+  const [added, setAdded] = useState(false);
   const [wait, setWait] = useState(false);
-  const [user, setUser] = useState({name:"",phone:"",email:"",fq:4,eod:4,clean:4,ser:4,overall:4,date:new Date(),message:"",image:""});
-  let showdata={1:"Poor",2:"Need to Improve",3:"Average",4:"Can Do Better",5:"Excellent"};
-  let showemoji={1:"🤬",2:"🙁",3:"😶",4:"😁",5:"😍"};
-  let text_color={1:"text-red-600",2:"text-purple-400",3:"text-yellow-700",4:"text-green-500",5:"text-green-700"};
-  function ValidateEmail(inputText)
-{
-var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-if(inputText.match(mailformat))
-{
+  const [next, setNext] = useState(false); // controls mobile flow
 
-return true;
-}
-else
-{
-alert("Invalid Email");
+  const [user, setUser] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    fq: 4,
+    eod: 4,
+    clean: 4,
+    ser: 4,
+    overall: 4,
+    date: new Date(),
+    message: "",
+    image: ""
+  });
 
-return false;
-}
-}
-async function addingpost(){
-//  console.log(user);
-if(ValidateEmail(user.email)==false){
-  return;
-}else if(user.phone.length!=10){
-  alert("Invalid Phone number");
-  return;
-}
+  const showdata = {
+    1: "Poor",
+    2: "Need to Improve",
+    3: "Average",
+    4: "Can Do Better",
+    5: "Excellent"
+  };
+  const showemoji = { 1: "🤬", 2: "🙁", 3: "😶", 4: "😁", 5: "😍" };
+  const text_color = {
+    1: "text-red-500",
+    2: "text-orange-500",
+    3: "text-yellow-500",
+    4: "text-green-500",
+    5: "text-emerald-600"
+  };
 
-setWait(true);
+  function ValidateEmail(inputText) {
+    const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (inputText.match(mailformat)) return true;
+    alert("Invalid Email");
+    return false;
+  }
 
-  const response=await fetch('/api/addpost',{
-    method:'POST',
-body:(JSON.stringify(user)),
-headers:{
-    'content-type':'application/json'
-}
-  })
-  setWait(false);
-  setadded(true);
-  window.location.assign('https://sanghamitra-resort.com/');
+  async function addingpost() {
+    if (!ValidateEmail(user.email)) return;
+    if (user.phone.length !== 10) {
+      alert("Invalid Phone number");
+      return;
+    }
 
-}
-if(wait){
-  return(
-    <div>
-      {/* <div className="float-right" onClick={getdetails}>login</div> */}
-      <title>
-        Sangmitra Feedback
-      </title>
-<body className="bg-gray-800 text-gray-100 px-8 py-6">
-      
-      <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">Lets talk about everything!</h2>
-      <div
-        className="max-w-screen-xl mt-24 px-8 grid gap-8 grid-cols-1 md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 py-16 mx-auto bg-gray-100 text-gray-900 rounded-lg shadow-lg">
-       
-        <div className="flex flex-col justify-between">
-          Thank you for your valuable time 
-          <br/>
-          Please wait a moment ....
-          </div>
-          </div>
-          </body>
-          </div>
-  )
-}
-else if(added){
-  return(
-    <div>
-     <title>
-        Sangmitra Feedback
-      </title>
-      
-<body className="bg-gray-800 text-gray-100 px-8 py-6">
-      
-      <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">Lets talk about everything!</h2>
-      <div
-        className="max-w-screen-xl mt-24 px-8 grid gap-8 grid-cols-1 md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 py-16 mx-auto bg-gray-100 text-gray-900 rounded-lg shadow-lg">
-       
-        <div className="flex flex-col justify-between">
-          Thank you for your valuable time 
-          <br/>
-          Hope you Enjoyed :)
-          </div>
-          </div>
-          </body>
-          </div>
-  )
-}
-else{
-  return (
-     <div>
-     <title>
-        Sangmitra Feedback
-      </title>
-      
-<body className="bg-gray-800 text-gray-100 px-4 py-6">
-      
-      <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">Lets talk about everything!</h2>
-      <div
-        className="max-w-screen-xl mt-24 px-8 grid gap-8 grid-cols-1 md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 py-16 mx-auto bg-gray-100 text-gray-900 rounded-lg shadow-lg">
-       
-        <div className="flex flex-col justify-between">
-          
-          <div>
-           
-            
-            <div className="">
-            
-          <div>
-            <span className="uppercase text-sm text-gray-600 font-bold"> Name</span>
-            <input className="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-              name="user[name]"
-              value={user.name}
-              onChange={e => setUser({ ...user, name: e.target.value })}
+    setWait(true);
+    await fetch("/api/addpost", {
+      method: "POST",
+      body: JSON.stringify(user),
+      headers: { "content-type": "application/json" }
+    });
+    setWait(false);
+    setAdded(true);
+    window.location.assign("https://sanghamitra-resort.com/");
+  }
 
-              type="text" placeholder=""/>
-          </div>
-          <div className="mt-8">
-            <span className="uppercase text-sm text-gray-600 font-bold">Email</span>
-            <input className="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-              type="email"
-              name="user[email]"
-        value={user.email}
-        onChange={e => setUser({ ...user, email: e.target.value })}
-              />
-          </div>
-          <div className="mt-8">
-            <span className="uppercase text-sm text-gray-600 font-bold">Phone</span>
-            <input className="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-              type='number'
-              name="user[phone]"
-        value={user.phone}
-        onChange={e => setUser({ ...user, phone: (e.target.value) })}
-              />
-          </div>
-          
-          <div className="mt-8">
-            <span className="uppercase text-sm text-gray-600 font-bold">Message</span>
-            <textarea
-            
-              className="w-full h-64 bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-              name="user[message]"
-        value={user.message}
-        onChange={e => setUser({ ...user, message: e.target.value })}
-              ></textarea>
-          </div>
-          
-         
-          
+  const StarRating = ({ rating, onChange }) => (
+    <div className="flex gap-2">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <button
+          key={star}
+          type="button"
+          onClick={() => onChange(star)}
+          className="text-2xl md:text-4xl transition-transform scale-90 hover:scale-100 focus:outline-none"
+        >
+          {star <= rating ? "⭐" : "☆"}
+        </button>
+      ))}
+    </div>
+  );
+
+  if (wait) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center px-4">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 max-w-md w-full text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-purple-600 mx-auto mb-6"></div>
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">
+            Submitting your feedback...
+          </h2>
+          <p className="text-gray-600">Thank you for your valuable time</p>
         </div>
-          </div>
-          
-        </div>
-        <div className="">
-          <div>
-            <span className="uppercase text-sm text-gray-600 font-bold">Food Quality</span>
-            
-            <br/>
-            <div className="mt-4">
-            <p className={`uppercase text-xl text-center w-full text-gray-600 ${text_color[user.fq]} font-bold `}>{showemoji[(user.fq)]+" "+showdata[(user.fq)]}</p>
-            </div>
-            <div className="flex justify-center ">
-              
-            {/* <div className="form-check form-check-inline ">
-    
-    <label onClick={e => setUser({ ...user, fq: 1 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.fq==1? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🤬</label>
-  </div>
-  <div className="form-check form-check-inline">
-   
-    <label onClick={e => setUser({ ...user, fq: 2 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.fq==2? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🙁</label>
-  </div>
-  <div className="form-check form-check-inline">
-    
-    <label onClick={e => setUser({ ...user, fq: 3 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.fq==3? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😶</label>
-  </div>
-  <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, fq: 4 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.fq==4? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😁</label>
-  </div>
-  <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, fq: 5 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.fq==5? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😍</label>
-  </div> */}
-  <br></br>
-   {/* <input
-    type="range"
-    className="
-      form-range
-      block 
-      appearance-none
-      w-full
-      h-1
-      p-0
-      mt-6
-      bg-gray-400
-      
-    "
-    step={0.0001}
-    min={1}
-    max={5}
-    
-    id="customRange3"
-   onChange={(e)=>setUser({ ...user, fq: parseInt(e.target.value) })}
-  /> */}
-  <StarRatings
-          rating={user.fq}
-          starRatedColor="gold"
-          changeRating={(e)=>{setUser({ ...user, fq: parseInt(e) })}}
-          numberOfStars={5}
-            starDimension={35}
-          name='rating'
-        />
-  {/* <br></br> */}
-  
-  
-
-            
-          </div>
-          <div className="mt-8">
-            <span className="uppercase text-sm text-gray-600 font-bold">Ease of Odering</span>
-            <br/>
-            
-            <div className="mt-4">
-            <p className={`uppercase text-xl text-center w-full text-gray-600 ${text_color[user.eod]} font-bold `}>{showemoji[(user.eod)]+" "+showdata[(user.eod)]}</p>
-            </div>
-            <div className="flex justify-center ">
-              
-            {/* <div className="form-check form-check-inline ">
-    
-    <label onClick={e => setUser({ ...user, eod: 1 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.eod==1? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🤬</label>
-  </div>
-  <div className="form-check form-check-inline">
-   
-    <label onClick={e => setUser({ ...user, eod: 2 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.eod==2? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🙁</label>
-  </div>
-  <div className="form-check form-check-inline">
-    
-    <label onClick={e => setUser({ ...user, eod: 3 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.eod==3? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😶</label>
-  </div>
-  <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, eod: 4 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.eod==4? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😁</label>
-  </div>
-  <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, eod: 5 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.eod==5? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😍</label>
-  </div> */}
-  <br></br>
-   {/* <input
-    type="range"
-    className="
-      form-range
-      
-      appearance-none
-      w-full
-      h-1
-      p-0
-      mt-6
-      bg-gray-400
-      focus:outline-none focus:ring-0 focus:shadow-none
-    "
-    step={0.0001}
-    min={1}
-    max={5}
-    
-    id="customRange3"
-   onChange={(e)=>setUser({ ...user, eod: parseInt(e.target.value) })}
-  /> */}
-  <StarRatings
-          rating={user.eod}
-          starRatedColor="gold"
-          changeRating={(e)=>{setUser({ ...user, eod: parseInt(e) })}}
-          numberOfStars={5}
-            starDimension={35}
-          name='rating'
-        />
-</div>
-  {/* <br></br> */}
-</div>
-          </div>
-          <div className="mt-8">
-            <span className="uppercase text-sm text-gray-600 font-bold">Service</span>
-            <br/>
-            <div className="mt-4">
-            <p className={`uppercase text-xl text-center w-full text-gray-600 ${text_color[user.ser]} font-bold `}>{showemoji[(user.ser)]+" "+showdata[(user.ser)]}</p>
-            </div>
-            <div className="flex justify-center space-x-4">
-              
-            {/* <div className="form-check form-check-inline ">
-    
-    <label onClick={e => setUser({ ...user, ser: 1 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.ser==1? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🤬</label>
-  </div>
-  <div className="form-check form-check-inline">
-   
-    <label onClick={e => setUser({ ...user, ser: 2 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.ser==2? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🙁</label>
-  </div>
-  <div className="form-check form-check-inline">
-    
-    <label onClick={e => setUser({ ...user, ser: 3 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.ser==3? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😶</label>
-  </div>
-  <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, ser: 4 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.ser==4? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😁</label>
-  </div>
-  <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, ser: 5 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.ser==5? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😍</label>
-  </div> */}
-  <StarRatings
-          rating={user.ser}
-          starRatedColor="gold"
-          changeRating={(e)=>{setUser({ ...user, ser: parseInt(e) })}}
-             starDimension={35}
-          numberOfStars={5}
-          name='rating'
-        />
-</div>
-          </div>
-          <div className="mt-8">
-            <span className="uppercase text-sm text-gray-600 font-bold">Cleanliness</span>
-            <br/>
-            <div className="mt-4">
-            <p className={`uppercase text-xl text-center w-full text-gray-600 ${text_color[user.clean]} font-bold `}>{showemoji[(user.clean)]+" "+showdata[(user.clean)]}</p>
-            </div>
-            <div className="flex justify-center space-x-4">
-              
-            {/* <div className="form-check form-check-inline ">
-    
-    <label onClick={e => setUser({ ...user, clean: 1 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.clean==1? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🤬</label>
-  </div>
-  <div className="form-check form-check-inline">
-   
-    <label onClick={e => setUser({ ...user, clean: 2 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.clean==2? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🙁</label>
-  </div>
-  <div className="form-check form-check-inline">
-    
-    <label onClick={e => setUser({ ...user, clean: 3 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.clean==3? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😶</label>
-  </div>
-  <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, clean: 4 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.clean==4? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😁</label>
-  </div>
-  <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, clean: 5 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.clean==5? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😍</label>
-  </div> */}
-  <StarRatings
-          rating={user.clean}
-          starRatedColor="gold"
-          changeRating={(e)=>{setUser({ ...user, clean: parseInt(e) })}}
-            starDimension={35}
-          numberOfStars={5}
-          name='rating'
-        />
-
-</div>
-          </div>
-          <div className="mt-8">
-            <span className="uppercase text-sm text-gray-600 font-bold">Overall Experience</span>
-            <br/>
-            <div className="mt-4">
-            <p className={`uppercase text-xl text-center w-full text-gray-600 ${text_color[user.overall]} font-bold `}>{showemoji[(user.overall)]+" "+showdata[(user.overall)]}</p>
-            </div>
-            <div className="flex justify-center space-x-4">
-              
-            {/* <div className="form-check form-check-inline ">
-    
-    <label onClick={e => setUser({ ...user, overall: 1 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.overall==1? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🤬</label>
-  </div>
-  <div className="form-check form-check-inline">
-   
-    <label onClick={e => setUser({ ...user, overall: 2 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.overall==2? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >🙁</label>
-  </div>
-  <div className="form-check form-check-inline">
-    
-    <label onClick={e => setUser({ ...user, overall: 3 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.overall==3? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😶</label>
-  </div>
-  <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, overall: 4 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.overall==4? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😁</label>
-  </div>
-  <div className="form-check form-check-inline">
-    <label onClick={e => setUser({ ...user, overall: 5 })} className={`form-check-label ease-in text-2xl  bg-gray-300 rounded-3xl inline-block text-gray-800 ${user.overall==5? 'text-3xl   bg-gray-400 rounded-3xl':''}`} >😍</label>
-  </div> */}
-  <StarRatings
-          rating={user.overall}
-          starRatedColor="gold"
-          changeRating={(e)=>{setUser({ ...user, overall: parseInt(e) })}}
-             starDimension={35}
-          numberOfStars={5}
-          name='rating'
-        />
-
-  
-</div>
-
-
-
-          </div>
-          <br/>
-          <div className="mt-2">
-            <button
-            onClick={addingpost}
-              className="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
-              Submit Message
-            </button>
-          </div>
-        </div>
-        
       </div>
-      
-    </body>
-     </div>
     );
-  
-}
+  } else if (added) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center px-4">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 max-w-md w-full text-center">
+          <div className="text-6xl mb-6">🎉</div>
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">Thank You!</h2>
+          <p className="text-gray-600 text-lg">
+            We appreciate your valuable feedback
+          </p>
+          <p className="text-purple-600 font-semibold mt-2">
+            Hope you enjoyed your experience! 😊
+          </p>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="min-h-screen bg-blue-200 py-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 text-center mb-4">
+            We'd Love Your Feedback!
+          </h1>
+          <p className="text-purple-600 text-center text-lg mb-12">
+            Help us serve you better
+          </p>
+
+          <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
+            {/* On large screens: both columns visible */}
+            <div className="hidden md:grid grid-cols-2 gap-8 p-8 md:p-12 ">
+              {/* Left Column - Details */}
+              <div className="space-y-6 order-2">
+                <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-2xl">
+                  <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                    Your Details
+                  </h2>
+                  <div className="space-y-5">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Name
+                      </label>
+                      <input
+                        className="w-full bg-white border-2 border-gray-200 text-gray-900 px-4 py-3 rounded-xl focus:outline-none focus:border-purple-500"
+                        value={user.name}
+                        onChange={(e) =>
+                          setUser({ ...user, name: e.target.value })
+                        }
+                        type="text"
+                        placeholder="Enter your name"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Email
+                      </label>
+                      <input
+                        className="w-full bg-white border-2 border-gray-200 text-gray-900 px-4 py-3 rounded-xl focus:outline-none focus:border-purple-500"
+                        type="email"
+                        value={user.email}
+                        onChange={(e) =>
+                          setUser({ ...user, email: e.target.value })
+                        }
+                        placeholder="your.email@example.com"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Phone
+                      </label>
+                      <input
+                        className="w-full bg-white border-2 border-gray-200 text-gray-900 px-4 py-3 rounded-xl focus:outline-none focus:border-purple-500"
+                        type="number"
+                        value={user.phone}
+                        onChange={(e) =>
+                          setUser({ ...user, phone: e.target.value })
+                        }
+                        placeholder="10-digit mobile number"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Additional Comments
+                      </label>
+                      <textarea
+                        className="w-full bg-white border-2 border-gray-200 text-gray-900 px-4 py-3 rounded-xl focus:outline-none focus:border-purple-500 resize-none"
+                        value={user.message}
+                        onChange={(e) =>
+                          setUser({ ...user, message: e.target.value })
+                        }
+                        rows="4"
+                        placeholder="Share your thoughts with us..."
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column - Ratings */}
+              <div className="space-y-6">
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-2xl">
+                  <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                    Rate Your Experience
+                  </h2>
+
+                  {["fq", "eod", "ser", "clean", "overall"].map((field, i) => {
+                    const labels = [
+                      "Food Quality",
+                      "Ease of Ordering",
+                      "Service",
+                      "Cleanliness",
+                      "Overall Experience"
+                    ];
+                    return (
+                      <div key={field} className="bg-white p-2 rounded-xl shadow-sm">
+                        <label className="block text-sm font-semibold text-gray-700 mb-3">
+                          {labels[i]}
+                        </label>
+                        <div className="flex items-center justify-around mb-2">
+                          <StarRating
+                            rating={user[field]}
+                            onChange={(e) => setUser({ ...user, [field]: e })}
+                          />
+                          <span className="text-2xl">{showemoji[user[field]]}</span>
+                        </div>
+                        <p
+                          className={`text-center font-semibold ${text_color[user[field]]}`}
+                        >
+                          {showdata[user[field]]}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Submit Button for Large Screens */}
+            <div className="hidden md:block px-8 md:px-12 pb-8">
+              <button
+                onClick={addingpost}
+                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg transform transition-all duration-200 hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-purple-300"
+              >
+                Submit Feedback
+              </button>
+            </div>
+
+            {/* Small Screens - Step Flow */}
+            <div className="block md:hidden p-6">
+              {!next ? (
+                // Step 1: Ratings
+                <div>
+                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-2xl mb-6">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                      Rate Your Experience
+                    </h2>
+
+                    {["fq", "eod", "ser", "clean", "overall"].map((field, i) => {
+                      const labels = [
+                        "Food Quality",
+                        "Ease of Ordering",
+                        "Service",
+                        "Cleanliness",
+                        "Overall Experience"
+                      ];
+                      return (
+                        <div
+                          key={field}
+                          className="bg-white p-2 rounded-xl shadow-sm mb-4"
+                        >
+                          <label className="block text-sm font-semibold text-gray-700 mb-3">
+                            {labels[i]}
+                          </label>
+                          <div className="flex items-center justify-around mb-2">
+                            <StarRating
+                              rating={user[field]}
+                              onChange={(e) => setUser({ ...user, [field]: e })}
+                            />
+                            <span className="text-2xl">{showemoji[user[field]]}</span>
+                          </div>
+                          <p
+                            className={`text-center font-semibold ${text_color[user[field]]}`}
+                          >
+                            {showdata[user[field]]}
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <button
+                    onClick={() => setNext(true)}
+                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg transform transition-all duration-200 hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-purple-300"
+                  >
+                    Next
+                  </button>
+                </div>
+              ) : (
+                // Step 2: Details
+                <div>
+                  <button
+                    onClick={() => setNext(false)}
+                    className="text-sm bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded-md mb-4"
+                  >
+                    ← Back
+                  </button>
+
+                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-2xl mb-6">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                      Your Details
+                    </h2>
+
+                    <div className="space-y-5">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          Name
+                        </label>
+                        <input
+                          className="w-full bg-white border-2 border-gray-200 text-gray-900 px-4 py-3 rounded-xl focus:outline-none focus:border-purple-500"
+                          value={user.name}
+                          onChange={(e) =>
+                            setUser({ ...user, name: e.target.value })
+                          }
+                          type="text"
+                          placeholder="Enter your name"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          Email
+                        </label>
+                        <input
+                          className="w-full bg-white border-2 border-gray-200 text-gray-900 px-4 py-3 rounded-xl focus:outline-none focus:border-purple-500"
+                          type="email"
+                          value={user.email}
+                          onChange={(e) =>
+                            setUser({ ...user, email: e.target.value })
+                          }
+                          placeholder="your.email@example.com"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          Phone
+                        </label>
+                        <input
+                          className="w-full bg-white border-2 border-gray-200 text-gray-900 px-4 py-3 rounded-xl focus:outline-none focus:border-purple-500"
+                          type="number"
+                          value={user.phone}
+                          onChange={(e) =>
+                            setUser({ ...user, phone: e.target.value })
+                          }
+                          placeholder="10-digit mobile number"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          Additional Comments
+                        </label>
+                        <textarea
+                          className="w-full bg-white border-2 border-gray-200 text-gray-900 px-4 py-3 rounded-xl focus:outline-none focus:border-purple-500 resize-none"
+                          value={user.message}
+                          onChange={(e) =>
+                            setUser({ ...user, message: e.target.value })
+                          }
+                          rows="4"
+                          placeholder="Share your thoughts with us..."
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={addingpost}
+                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg transform transition-all duration-200 hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-purple-300"
+                  >
+                    Submit Feedback
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
